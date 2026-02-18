@@ -1,7 +1,12 @@
 <?php 
 require_once dirname(__DIR__)."/entity/Categorie.php";
 class CategorieView{
-    public function saisieCategorie():Categorie
+
+    private  function __construct()
+  {
+    
+  }
+    public  static function saisieCategorie():Categorie
     {
              //$categorie=new Categorie();
              $id=(int)readline("Entrer un id: ");
@@ -12,7 +17,7 @@ class CategorieView{
              return $categorie;
     }
 
-    public  function afficherCategories(array $categories,int $N):void{
+    public static function afficherCategories(array $categories,int $N):void{
         for ($i=1; $i <=$N ; $i++) { 
            echo ($categories[$i]->toString());
       }

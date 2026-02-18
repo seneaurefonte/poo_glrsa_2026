@@ -11,23 +11,21 @@ require_once __DIR__."/entity/Categorie.php";
 require_once __DIR__."/view/CategorieView.php";
 require_once __DIR__."/service/CategorieService.php";
 class Principal{
-    private CategorieService $categorieService;
-    private CategorieView $categorieView;
+   
 
 
     public function __construct()
     {
-     $this->categorieService=new CategorieService();
-     $this->categorieView=new CategorieView();
+    
     }
 
     public function execute():void 
     {
-        $categorie=$this->categorieView->saisieCategorie();
-        $this->categorieService->addCategorie($categorie);
+        $categorie=CategorieView::saisieCategorie();
+        CategorieService::addCategorie($categorie);
         $allCategories=[];
-        $this->categorieService->getAllCategories($allCategories);
-        $this->categorieView->afficherCategories($allCategories,  $this->categorieService->getNbreCat());
+        CategorieService::getAllCategories($allCategories);
+        CategorieView::afficherCategories($allCategories,  CategorieService::getNbreCat());
 
     }
   

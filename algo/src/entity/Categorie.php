@@ -1,12 +1,38 @@
 <?php 
+require_once dirname(__DIR__)."/entity/Produit.php";
 class Categorie{
      private int $id ;
      private string $libelle ;
+     private static $nbreCate=0;
+
+     //OneToMany
+     private array $produits=[];
+     private int $nbreProduit=0;
+
+     public function getProduits(array &$allProduit):void
+     {
+        $allProduit=[];
+       for ($i=1; $i <= $this->nbreProduit; $i++) { 
+            $allProduit[$i]=$this->produits[$i];
+       }
+     }
+
+     public function addProduit(Produit $produit):bool{
+        if ( $this->nbreProduit<100) {
+             $this->nbreProduit++;
+             $this->produits[$this->nbreProduit]=$produit;
+            return true;
+        }
+         return false;
+     }
+
+ 
+
 
      //Constructeur
      public function __construct()
      {
-       
+         $this->id=++Categorie::$nbreCate;
      }
     //Getters et Setters de id 
     public function getId():int
